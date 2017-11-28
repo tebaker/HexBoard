@@ -1,9 +1,9 @@
-/* PROGRAMMER  : TALON BAKER
- * CLASS       : CMPS 109
- * HW_04       : HEX BOARD
- * DUE DATE    : 11/10/17
- */
-
+///* PROGRAMMER  : TALON BAKER
+// * CLASS       : CMPS 109
+// * HW_04       : HEX BOARD
+// * DUE DATE    : 11/10/17
+// */
+//
 #include "HexBoard.h"
 #include "DrawingTools.h"
 #include <iostream>
@@ -20,10 +20,10 @@ using namespace std;
 int main(int argc, char** argv) {
 	glutInit(&argc, argv);                 // Initialize GLUT
 	glutCreateWindow("Hex Board"); // Create a window with the given title
-	glutReshapeWindow(500, 500);
+	glutReshapeWindow(800, 800);
 
 	// obtain a time-based seed:
-	unsigned seed = std::chrono::system_clock::now().time_since_epoch().count();
+	unsigned seed = chrono::system_clock::now().time_since_epoch().count();
 
 	HexBoard    board(BOARD_SIZE);
 	vector<int> randArray;
@@ -40,19 +40,18 @@ int main(int argc, char** argv) {
 	}
 
 	//randomly shuffling array
-	shuffle(randArray.begin(), randArray.end(), std::default_random_engine(seed));
+	shuffle(randArray.begin(), randArray.end(), default_random_engine(seed));
 
 	//adding pieces from randomly shuffled array to the board
 	for(int i = 0; i < BOARD_SIZE; i++) {
 		for(int j = 0; j < BOARD_SIZE; j++) {
-			board.addPiece(i, j, static_cast<tileStatus>(randArray.back()));
+			board.placePiece(i, j, static_cast<tileStatus>(randArray.back()));
 			randArray.pop_back();
 		}
 	}
 
 	cout << board.printBoard();
 
-	cout << "Winner is: ";
 	if(board.calculateWinner() == BLUE) {
 		cout << "BLUE!"<< endl;
 	}
@@ -60,8 +59,12 @@ int main(int argc, char** argv) {
 		cout << "RED!" << endl;
 	}
 
-	glutDisplayFunc(drawHexBoard); // Register display callback handler for window re-paint
-	glutMainLoop();           // Enter the infinitely event-processing loop
+
+//	glutDisplayFunc(drawHexBoard); // Register display callback handler for window re-paint
+//
+//	drawPiece(MASTER_X, MASTER_Y, BLUE);
+//
+//	glutMainLoop();           // Enter the infinitely event-processing loop
 
 	return 0;
 }//end - main

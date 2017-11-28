@@ -24,6 +24,7 @@ const int   BOARD_SIZE = 11;
 const float MASTER_X   = -0.85;
 const float MASTER_Y   =  0.85;
 
+//will draw a circle piece centered at x, y of the specified color
 void drawPiece(float x, float y, tileStatus color) {
 	//resetting radius so the piece will be smaller than the hexagon
 	float cirR = R - 0.025;
@@ -81,7 +82,6 @@ void drawPiece(float x, float y, tileStatus color) {
 			//otherwise BLUE
 			glColor3f(0.0f, 0.0, 1.0f);
 		}
-
 		//N
 		glVertex2f(x + cirR * 0.0,           y + cirR * 1.0);
 		//Quadrant II
@@ -127,7 +127,7 @@ void drawHexBoard(){
     for(int i = 0; i < BOARD_SIZE; i++) {
 		glBegin(GL_POLYGON);				//starting drawing polygon
 
-			//line RGB light purple-gray
+			//light gray
 			glColor3f(0.794f, 0.766f, 0.790f);
 			//adding all points to hexagon starting with north-most point
 			glVertex2f(x + R * 0.0,           y + R * 1.0);
@@ -319,76 +319,33 @@ void drawHexBoard(){
 		y -= Y_OFFSET;
 	}//end - inner for
 
-
-	//resetting the current x, x, and y
 	x = MASTER_X;
 	y = MASTER_Y;
 
-	//manually setting x, y values: moving x five places to the right and y eleven places down
-	x += 10 * X_OFFSET;
-	y -= 10 * Y_OFFSET;
+	x += 10*X_OFFSET;
+	y -= 10*Y_OFFSET;
 
-	//accounting for the half-color (blue/red) at bottom left
+	//drawing a line in half RED/BLUE in the SW and NE edges
 	glBegin(GL_LINES);					//starting drawing boarder
-		//PURPLE for SW and NE corners
-		glColor3f(0.4f, 0.1f, 0.7f);
-		//coloring the SW corner purple
-		glVertex2f(x - R * (sqrt(3) / 2), y - R * 0.5);	//SW
-		glVertex2f(x + R * 0.0,           y - R * 1.0);	//S
-	glEnd();							//ending drawing boarder
-
-	//resetting the current x, x, and y
-	x = MASTER_X;
-	y = MASTER_Y;
-
-	//manually setting x, y values: moving x five places to the right an0.396f, 0.070f, 0.709fd y eleven places down
-	x += 20 * X_OFFSET;
-
-	//accounting for the half-color (blue/red) at bottom left
-	glBegin(GL_LINES);					//starting drawing boarder
-		//PURPLE for SW and NE corners
-		glColor3f(0.4f, 0.1f, 0.7f);
-		//coloring the SW corner purple
-		glVertex2f(x + R * 0.0,           y + R * 1.0);	//N
-		glVertex2f(x + R * (sqrt(3) / 2), y + R * 0.5); //NE
-	glEnd();							//ending drawing boarder
-
-	//resetting the current x, x, and y
-	x = MASTER_X;
-	y = MASTER_Y;
-
-	float cirR = R - 0.03;
-
-	//drawing a CIRCLE to the screen
-	glBegin(GL_POLYGON);					//starting drawing boarder
-	//RED for fun
+	//RED for lower line half
 	glColor3f(1.0f, 0.0f, 0.0f);
-		//N
-		glVertex2f(x + cirR * 0.0,           y + cirR * 1.0);
-		//Quadrant II
-		glVertex2f(x - cirR * 0.5,           y + cirR * (sqrt(3) / 2));
-		glVertex2f(x - cirR * (sqrt(2) / 2), y + cirR * (sqrt(2) / 2));
-		glVertex2f(x - cirR * (sqrt(3) / 2), y + cirR * 0.5);
-		//W
-		glVertex2f(x - cirR * 1.0,           y + cirR * 0.0);
-		//Quadrant III
-		glVertex2f(x - cirR * (sqrt(3) / 2), y - cirR * 0.5);
-		glVertex2f(x - cirR * (sqrt(2) / 2), y - cirR * (sqrt(2) / 2));
-		glVertex2f(x - cirR * 0.5,           y - cirR * (sqrt(3) / 2));
-		//S
-		glVertex2f(x + cirR * 0.0,           y - cirR * 1.0);
-		//Quadrant IV
-		glVertex2f(x + cirR * 0.5,           y - cirR * (sqrt(3) / 2));
-		glVertex2f(x + cirR * (sqrt(2) / 2), y - cirR * (sqrt(2) / 2));
-		glVertex2f(x + cirR * (sqrt(3) / 2), y - cirR * 0.5);
-		//E
-		glVertex2f(x + cirR * 1.0,           y + cirR * 0.0);
-		//Quadrant I
-		glVertex2f(x + cirR * (sqrt(3) / 2), y + cirR * 0.5);
-		glVertex2f(x + cirR * (sqrt(2) / 2), y + cirR * (sqrt(2) / 2));
-		glVertex2f(x + cirR * 0.5,           y + cirR * (sqrt(3) / 2));
-
+	glVertex2f(x - R * sqrt(3)/4, y - R * 3/4);	//SWL
+	glVertex2f(x + R * 0.0,       y - R * 1.0);	//S
 	glEnd();							//ending drawing boarder
+
+	x = MASTER_X;
+	y = MASTER_Y;
+
+	x += 20*X_OFFSET;
+
+	//drawing a line in half RED/BLUE in the SW and NE edges
+	glBegin(GL_LINES);					//starting drawing boarder
+	//RED for lower line half
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glVertex2f(x + R * 0.0,       y + R * 1.0);	//N
+	glVertex2f(x + R * sqrt(3)/4, y + R * 3/4);	//NEU
+	glEnd();							//ending drawing boarder
+
 
 
 	//rendering all data to the screen
