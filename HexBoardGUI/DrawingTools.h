@@ -25,90 +25,102 @@ const float MASTER_X   = -0.85;
 const float MASTER_Y   =  0.85;
 
 //will draw a circle piece centered at x, y of the specified color
-void drawPiece(float x, float y, tileStatus color) {
-	//resetting radius so the piece will be smaller than the hexagon
-	float cirR = R - 0.025;
+void drawPiece(int xVar, int yVar, tileStatus color) {
+	if(color != OPEN) {
+		//resetting radius so the piece will be smaller than the hexagon
+		float cirR = R - 0.025;
 
-	//off setting x, y so shadow will be at bottom left
-	x -= 0.005;
-	y -= 0.005;
+		float x = MASTER_X;
+		x += 2 * xVar * X_OFFSET;
 
-	//drawing a CIRCLE to the screen
-	glBegin(GL_POLYGON);					//starting drawing boarder
-	//piece shadow same gray as the board shadow
-	glColor3f(0.794f, 0.766f, 0.790f);
-		//N
-		glVertex2f(x + cirR * 0.0,           y + cirR * 1.0);
-		//Quadrant II
-		glVertex2f(x - cirR * 0.5,           y + cirR * (sqrt(3) / 2));
-		glVertex2f(x - cirR * (sqrt(2) / 2), y + cirR * (sqrt(2) / 2));
-		glVertex2f(x - cirR * (sqrt(3) / 2), y + cirR * 0.5);
-		//W
-		glVertex2f(x - cirR * 1.0,           y + cirR * 0.0);
-		//Quadrant III
-		glVertex2f(x - cirR * (sqrt(3) / 2), y - cirR * 0.5);
-		glVertex2f(x - cirR * (sqrt(2) / 2), y - cirR * (sqrt(2) / 2));
-		glVertex2f(x - cirR * 0.5,           y - cirR * (sqrt(3) / 2));
-		//S
-		glVertex2f(x + cirR * 0.0,           y - cirR * 1.0);
-		//Quadrant IV
-		glVertex2f(x + cirR * 0.5,           y - cirR * (sqrt(3) / 2));
-		glVertex2f(x + cirR * (sqrt(2) / 2), y - cirR * (sqrt(2) / 2));
-		glVertex2f(x + cirR * (sqrt(3) / 2), y - cirR * 0.5);
-		//E
-		glVertex2f(x + cirR * 1.0,           y + cirR * 0.0);
-		//Quadrant I
-		glVertex2f(x + cirR * (sqrt(3) / 2), y + cirR * 0.5);
-		glVertex2f(x + cirR * (sqrt(2) / 2), y + cirR * (sqrt(2) / 2));
-		glVertex2f(x + cirR * 0.5,           y + cirR * (sqrt(3) / 2));
-
-	glEnd();							//ending drawing boarder
-
-	//resetting radius so the piece will be smaller than the shadow
-	cirR = R - 0.03;
-
-	//resetting x, y so piece will be at center of hexagon
-	x += 0.005;
-	y += 0.005;
-
-	//drawing a CIRCLE to the screen
-	glBegin(GL_POLYGON);					//starting drawing boarder
-
-		if(color == RED) {
-			//piece output RED
-			glColor3f(1.0f, 0.0, 0.0f);
+		for(int i = 0; i < yVar; i++) {
+			x += X_OFFSET;
 		}
-		else {
-			//otherwise BLUE
-			glColor3f(0.0f, 0.0, 1.0f);
-		}
-		//N
-		glVertex2f(x + cirR * 0.0,           y + cirR * 1.0);
-		//Quadrant II
-		glVertex2f(x - cirR * 0.5,           y + cirR * (sqrt(3) / 2));
-		glVertex2f(x - cirR * (sqrt(2) / 2), y + cirR * (sqrt(2) / 2));
-		glVertex2f(x - cirR * (sqrt(3) / 2), y + cirR * 0.5);
-		//W
-		glVertex2f(x - cirR * 1.0,           y + cirR * 0.0);
-		//Quadrant III
-		glVertex2f(x - cirR * (sqrt(3) / 2), y - cirR * 0.5);
-		glVertex2f(x - cirR * (sqrt(2) / 2), y - cirR * (sqrt(2) / 2));
-		glVertex2f(x - cirR * 0.5,           y - cirR * (sqrt(3) / 2));
-		//S
-		glVertex2f(x + cirR * 0.0,           y - cirR * 1.0);
-		//Quadrant IV
-		glVertex2f(x + cirR * 0.5,           y - cirR * (sqrt(3) / 2));
-		glVertex2f(x + cirR * (sqrt(2) / 2), y - cirR * (sqrt(2) / 2));
-		glVertex2f(x + cirR * (sqrt(3) / 2), y - cirR * 0.5);
-		//E
-		glVertex2f(x + cirR * 1.0,           y + cirR * 0.0);
-		//Quadrant I
-		glVertex2f(x + cirR * (sqrt(3) / 2), y + cirR * 0.5);
-		glVertex2f(x + cirR * (sqrt(2) / 2), y + cirR * (sqrt(2) / 2));
-		glVertex2f(x + cirR * 0.5,           y + cirR * (sqrt(3) / 2));
 
-	glEnd();							//ending drawing boarder
-}
+		float y = MASTER_Y;
+		y -= yVar * Y_OFFSET;
+
+		//off setting x, y so shadow will be at bottom left
+		x -= 0.005;
+		y -= 0.005;
+
+		//drawing a CIRCLE to the screen
+		glBegin(GL_POLYGON);					//starting drawing boarder
+		//piece shadow same gray as the board shadow
+		glColor3f(0.794f, 0.766f, 0.790f);
+			//N
+			glVertex2f(x + cirR * 0.0,           y + cirR * 1.0);
+			//Quadrant II
+			glVertex2f(x - cirR * 0.5,           y + cirR * (sqrt(3) / 2));
+			glVertex2f(x - cirR * (sqrt(2) / 2), y + cirR * (sqrt(2) / 2));
+			glVertex2f(x - cirR * (sqrt(3) / 2), y + cirR * 0.5);
+			//W
+			glVertex2f(x - cirR * 1.0,           y + cirR * 0.0);
+			//Quadrant III
+			glVertex2f(x - cirR * (sqrt(3) / 2), y - cirR * 0.5);
+			glVertex2f(x - cirR * (sqrt(2) / 2), y - cirR * (sqrt(2) / 2));
+			glVertex2f(x - cirR * 0.5,           y - cirR * (sqrt(3) / 2));
+			//S
+			glVertex2f(x + cirR * 0.0,           y - cirR * 1.0);
+			//Quadrant IV
+			glVertex2f(x + cirR * 0.5,           y - cirR * (sqrt(3) / 2));
+			glVertex2f(x + cirR * (sqrt(2) / 2), y - cirR * (sqrt(2) / 2));
+			glVertex2f(x + cirR * (sqrt(3) / 2), y - cirR * 0.5);
+			//E
+			glVertex2f(x + cirR * 1.0,           y + cirR * 0.0);
+			//Quadrant I
+			glVertex2f(x + cirR * (sqrt(3) / 2), y + cirR * 0.5);
+			glVertex2f(x + cirR * (sqrt(2) / 2), y + cirR * (sqrt(2) / 2));
+			glVertex2f(x + cirR * 0.5,           y + cirR * (sqrt(3) / 2));
+
+		glEnd();							//ending drawing boarder
+
+		//resetting radius so the piece will be smaller than the shadow
+		cirR = R - 0.03;
+
+		//resetting x, y so piece will be at center of hexagon
+		x += 0.005;
+		y += 0.005;
+
+		//drawing a CIRCLE to the screen
+		glBegin(GL_POLYGON);					//starting drawing boarder
+
+			if(color == RED) {
+				//piece output RED
+				glColor3f(1.0f, 0.0, 0.0f);
+			}
+			else {
+				//otherwise BLUE
+				glColor3f(0.0f, 0.0, 1.0f);
+			}
+			//N
+			glVertex2f(x + cirR * 0.0,           y + cirR * 1.0);
+			//Quadrant II
+			glVertex2f(x - cirR * 0.5,           y + cirR * (sqrt(3) / 2));
+			glVertex2f(x - cirR * (sqrt(2) / 2), y + cirR * (sqrt(2) / 2));
+			glVertex2f(x - cirR * (sqrt(3) / 2), y + cirR * 0.5);
+			//W
+			glVertex2f(x - cirR * 1.0,           y + cirR * 0.0);
+			//Quadrant III
+			glVertex2f(x - cirR * (sqrt(3) / 2), y - cirR * 0.5);
+			glVertex2f(x - cirR * (sqrt(2) / 2), y - cirR * (sqrt(2) / 2));
+			glVertex2f(x - cirR * 0.5,           y - cirR * (sqrt(3) / 2));
+			//S
+			glVertex2f(x + cirR * 0.0,           y - cirR * 1.0);
+			//Quadrant IV
+			glVertex2f(x + cirR * 0.5,           y - cirR * (sqrt(3) / 2));
+			glVertex2f(x + cirR * (sqrt(2) / 2), y - cirR * (sqrt(2) / 2));
+			glVertex2f(x + cirR * (sqrt(3) / 2), y - cirR * 0.5);
+			//E
+			glVertex2f(x + cirR * 1.0,           y + cirR * 0.0);
+			//Quadrant I
+			glVertex2f(x + cirR * (sqrt(3) / 2), y + cirR * 0.5);
+			glVertex2f(x + cirR * (sqrt(2) / 2), y + cirR * (sqrt(2) / 2));
+			glVertex2f(x + cirR * 0.5,           y + cirR * (sqrt(3) / 2));
+
+		glEnd();							//ending drawing boarder
+	}
+}//end - drawPiece
 
 /* Handler for window-repaint event. Call back when the window first appears and
    whenever the window needs to be re-painted. */
@@ -346,7 +358,13 @@ void drawHexBoard(){
 	glVertex2f(x + R * sqrt(3)/4, y + R * 3/4);	//NEU
 	glEnd();							//ending drawing boarder
 
+	for(int i = 0; i < 11; i++) {
+		for(int j = 0; j < 11; j++) {
+			drawPiece(i, j, masterList.at(i * 11 + j).second);
+		}
+	}
 
+//	drawPiece(5, 5, BLUE);
 
 	//rendering all data to the screen
 	glFlush();

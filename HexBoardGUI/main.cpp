@@ -1,14 +1,13 @@
-///* PROGRAMMER  : TALON BAKER
-// * CLASS       : CMPS 109
-// * HW_04       : HEX BOARD
-// * DUE DATE    : 11/10/17
-// */
-//
+/* PROGRAMMER  : TALON BAKER
+ * CLASS       : CMPS 109
+ * HW_04       : HEX BOARD
+ * DUE DATE    : 11/10/17
+ */
 #include "HexBoard.h"
 #include "DrawingTools.h"
 #include <iostream>
-#include <vector>
 #include <random>
+#include <vector>
 #include <algorithm>	//needed for random_shuffle
 #include <chrono>
 #include <windows.h>    //for MS Windows
@@ -47,6 +46,9 @@ int main(int argc, char** argv) {
 		for(int j = 0; j < BOARD_SIZE; j++) {
 			board.placePiece(i, j, static_cast<tileStatus>(randArray.back()));
 			randArray.pop_back();
+
+			glutDisplayFunc(drawHexBoard);
+
 		}
 	}
 
@@ -59,12 +61,13 @@ int main(int argc, char** argv) {
 		cout << "RED!" << endl;
 	}
 
+	bool gameOver = false;
 
-//	glutDisplayFunc(drawHexBoard); // Register display callback handler for window re-paint
+//	while(!gameOver) {
 //
-//	drawPiece(MASTER_X, MASTER_Y, BLUE);
-//
-//	glutMainLoop();           // Enter the infinitely event-processing loop
+//	}
+
+	glutMainLoop();
 
 	return 0;
 }//end - main
