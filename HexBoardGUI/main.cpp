@@ -61,12 +61,6 @@ int main(int argc, char** argv) {
 		cout << "RED!" << endl;
 	}
 
-	bool gameOver = false;
-
-//	while(!gameOver) {
-//
-//	}
-
 	glutMainLoop();
 
 	return 0;
