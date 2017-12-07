@@ -178,15 +178,15 @@ void drawHexBoard(){
 	}//end - inner for
 
     currX = MASTER_X;
-    	y     = MASTER_Y;
-    	x 	  = currX;		//currX for line position when new line is started
+    	y = MASTER_Y;
+    	x = currX;		//currX for line position when new line is started
 
     	//creating the background of the board
         for(int i = 0; i < BOARD_SIZE; i++) {
         	for(int j = 0; j < BOARD_SIZE; j++) {
     			glBegin(GL_POLYGON);				//starting drawing polygon
 
-    				//line RGB light purple-gray
+    				//line RGB light gray
     				glColor3f(0.937f, 0.921f, 0.937f);
     				//adding all points to hexagon starting with north-most point
     				glVertex2f(x + R * 0.0,           y + R * 1.0);
@@ -364,7 +364,8 @@ void drawHexBoard(){
 		}
 	}
 
-//	drawPiece(5, 5, BLUE);
+//	drawPiece(0, 0, BLUE);
+
 
 	//rendering all data to the screen
 	glFlush();
