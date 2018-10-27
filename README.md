@@ -8,3 +8,5 @@
 
 ### Pathfinding algorithm for finding the winner
 ![img3](output.png)
+
+### [Click here for PDF write-up](TalonBaker109ExtraCreditWriteUp.pdf)
