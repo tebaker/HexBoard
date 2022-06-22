@@ -1,2 +1,3 @@
 C:\Users\talon.baker\Documents\HexBoard\HexBoardVsProject\Debug\HexBoardVsProject.exe
 C:\Users\talon.baker\Documents\HexBoard\HexBoardVsProject\Debug\HexBoardVsProject.pdb
+C:\Users\Talon\Documents\HexBoard\HexBoardVsProject\Debug\HexBoardVsProject.exe

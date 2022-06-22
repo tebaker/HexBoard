@@ -8,60 +8,21 @@
 #include <iostream>
 #include <random>
 #include <vector>
-#include <algorithm>	//needed for random_shuffle
+#include <algorithm> //needed for random_shuffle
 #include <chrono>
-#include <windows.h>    //for MS Windows
-#include <GL/glut.h>    //GLUT, includes glu.h and gl.h
+#include <windows.h> //for MS Windows
+#include <C:/OpenGL/glut-3.7/include/GL/glut.h> //GLUT, includes glu.h and gl.h
 
 /* Main function: GLUT runs as a console application starting at main()  */
 int main(int argc, char** argv) {
 	glutInit(&argc, argv);         // Initialize GLUT
 	glutCreateWindow("Hex Board"); // Create a window with the given title
-	glutReshapeWindow(800, 800);
+	glutReshapeWindow(800, 500);
 
 	HexBoard board(DrawingTools::BOARD_SIZE);
 	
-	// obtain a time-based seed:
-	unsigned seed = chrono::system_clock::now().time_since_epoch().count();
-	vector<int> randArray;
-
-	//populating an array with alternating REDs and BLUEs
-	for(int i = 0; i < DrawingTools::BOARD_SIZE * DrawingTools::BOARD_SIZE; i++) {
-		//using static_cast to safely convert from enum to int
-		if(i % 2 == 0) {
-			randArray.push_back(static_cast<int>(RED));
-		}
-		else {
-			randArray.push_back(static_cast<int>(BLUE));
-		}
-	}
-
-	//randomly shuffling array
-	shuffle(randArray.begin(), randArray.end(), default_random_engine(seed));
-
-	//adding pieces from randomly shuffled array to the board
-	for(int i = 0; i < DrawingTools::BOARD_SIZE; i++) {
-		for(int j = 0; j < DrawingTools::BOARD_SIZE; j++) {
-			board.placePiece(i, j, static_cast<tileStatus>(randArray.back()));
-			randArray.pop_back();
-
-			glutDisplayFunc(DrawingTools::drawHexBoard);
-		}
-	}
-
-	for(int i = 0; i < DrawingTools::BOARD_SIZE * DrawingTools::BOARD_SIZE; i++) {
-
-		cout << "weight RED: " << board.montyCarlo(RED) << endl;
-
-		cout << "weight BLUE: " << board.montyCarlo(BLUE) << endl;
-	}
-
-	if(board.calculateWinner() == BLUE) {
-		cout << "WINNER BLUE!"<< endl;
-	}
-	else {
-		cout << "WINNER RED!" << endl;
-	}
+	glutDisplayFunc(DrawingTools::drawHexBoard);
+	glutMouseFunc(DrawingTools::MyMouse);
 
 	glutMainLoop();
 

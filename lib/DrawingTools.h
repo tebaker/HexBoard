@@ -10,7 +10,7 @@
 
 #include "HexBoard.h"
 #include <windows.h>  // For MS Windows
-#include <GL/glut.h>  // GLUT, includes glu.h and gl.h
+#include <C:/OpenGL/glut-3.7/include/GL/glut.h>  // GLUT, includes glu.h and gl.h
 #include <math.h>
 #include <iostream>
 
@@ -46,7 +46,7 @@ namespace DrawingTools {
 			y -= 0.005;
 
 			//drawing a CIRCLE to the screen
-			glBegin(GL_POLYGON);					//starting drawing boarder
+			glBegin(GL_POLYGON); //starting drawing boarder
 			//piece shadow same gray as the board shadow
 			glColor3f(0.794f, 0.766f, 0.790f);
 				//N
@@ -370,6 +370,21 @@ namespace DrawingTools {
 
 		//rendering all data to the screen
 		glFlush();
+	} // End - DrawHexBoard
+
+	void MyMouse(int button, int state, int x, int y) {
+		switch (button) {
+		case GLUT_LEFT_BUTTON:
+			if (state == GLUT_UP) {
+				std::cout << "X: " << x << ", Y: " << y << ". UP" << std::endl;
+			}
+			if (state == GLUT_DOWN) {
+				std::cout << "X: " << x << ", Y: " << y << ". DOWN" << std::endl;
+			}
+			break;
+		}
+
+
 	}
 }
 #endif /* DRAWINGTOOLS_H_ */
