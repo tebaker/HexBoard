@@ -11,13 +11,13 @@
 #include <algorithm> //needed for random_shuffle
 #include <chrono>
 #include <windows.h> //for MS Windows
-#include <C:/OpenGL/glut-3.7/include/GL/glut.h> //GLUT, includes glu.h and gl.h
+#include <glut.h> //GLUT, includes glu.h and gl.h
 
 /* Main function: GLUT runs as a console application starting at main()  */
 int main(int argc, char** argv) {
 	glutInit(&argc, argv);         // Initialize GLUT
 	glutCreateWindow("Hex Board"); // Create a window with the given title
-	glutReshapeWindow(800, 500);
+	glutReshapeWindow(800, 800);
 
 	HexBoard board(DrawingTools::BOARD_SIZE);
 	

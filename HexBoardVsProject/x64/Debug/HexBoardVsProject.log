@@ -1,15 +1,8 @@
-﻿  main.cpp
-C:\Users\Talon\Documents\HexBoard\lib\HexBoard.h(187,13): warning C4244: 'return': conversion from 'double' to 'float', possible loss of data
-C:\Users\Talon\Documents\HexBoard\lib\HexBoard.h(330,27): warning C4305: '=': truncation from 'const int' to 'float'
-C:\Users\Talon\Documents\HexBoard\lib\HexBoard.h(396,17): warning C4244: 'initializing': conversion from '_Rep' to 'unsigned int', possible loss of data
-          with
-          [
-              _Rep=std::chrono::system_clock::rep
-          ]
-main.obj : error LNK2019: unresolved external symbol glutInit referenced in function main
-main.obj : error LNK2019: unresolved external symbol glutMainLoop referenced in function main
-main.obj : error LNK2019: unresolved external symbol glutCreateWindow referenced in function main
-main.obj : error LNK2019: unresolved external symbol glutReshapeWindow referenced in function main
-main.obj : error LNK2019: unresolved external symbol glutDisplayFunc referenced in function main
-glut32.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
-C:\Users\Talon\Documents\HexBoard\HexBoardVsProject\x64\Debug\HexBoardVsProject.exe : fatal error LNK1120: 5 unresolved externals
+﻿main.obj : error LNK2019: unresolved external symbol __imp___glutInitWithExit referenced in function glutInit_ATEXIT_HACK
+main.obj : error LNK2019: unresolved external symbol __imp_glutMainLoop referenced in function main
+main.obj : error LNK2019: unresolved external symbol __imp___glutCreateWindowWithExit referenced in function glutCreateWindow_ATEXIT_HACK
+main.obj : error LNK2019: unresolved external symbol __imp_glutReshapeWindow referenced in function main
+main.obj : error LNK2019: unresolved external symbol __imp_glutDisplayFunc referenced in function main
+main.obj : error LNK2019: unresolved external symbol __imp_glutMouseFunc referenced in function main
+C:\Users\Talon\Documents\HexBoard\HexBoardVsProject\lib\glut32.lib : warning LNK4272: library machine type 'x86' conflicts with target machine type 'x64'
+C:\Users\Talon\Documents\HexBoard\HexBoardVsProject\x64\Debug\HexBoardVsProject.exe : fatal error LNK1120: 6 unresolved externals

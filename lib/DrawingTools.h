@@ -10,7 +10,7 @@
 
 #include "HexBoard.h"
 #include <windows.h>  // For MS Windows
-#include <C:/OpenGL/glut-3.7/include/GL/glut.h>  // GLUT, includes glu.h and gl.h
+#include <glut.h>  // GLUT, includes glu.h and gl.h
 #include <math.h>
 #include <iostream>
 
